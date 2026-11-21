@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <title>Termux Web</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="phone">
+    <!-- Android-style status bar -->
+    <div class="statusbar">
+      <span class="sb-time" id="clock">00:00</span>
+      <span class="sb-icons">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M2 20h3v-5H2v5zm5 0h3V11H7v9zm5 0h3V6h-3v14zm5 0h3V2h-3v18z"/></svg>
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0-5.5a5.5 5.5 0 0 0-3.9 9.4l1.4-1.4a3.5 3.5 0 1 1 4.9 0l1.4 1.4A5.5 5.5 0 0 0 12 13.5zm0-5A10.5 10.5 0 0 0 4.6 22l1.4-1.4a8.5 8.5 0 1 1 12 0l1.4 1.4A10.5 10.5 0 0 0 12 8.5z"/></svg>
+        <span class="battery"><span class="battery-level"></span></span>
+      </span>
+    </div>
+
+    <!-- App bar -->
+    <header class="appbar">
+      <button class="icon-btn" id="menuBtn" title="Sessions" aria-label="Open sessions">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+      </button>
+      <div class="appbar-title">
+        <span class="logo">TERMUX</span>
+        <span class="session-name" id="sessionName">session 1</span>
+      </div>
+      <button class="icon-btn" id="newBtn" title="New session" aria-label="New session">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      </button>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="scrim" id="scrim"></div>
+
+      <aside class="drawer" id="drawer">
+        <div class="drawer-head">
+          <span>SESSIONS</span>
+          <button class="icon-btn small" id="drawerNew" title="New session" aria-label="New session">+</button>
+        </div>
+        <div class="session-list" id="sessionList"></div>
+        <div class="drawer-foot">
+          <button class="drawer-action" id="closeSession">Close current session</button>
+          <div class="drawer-hint">Local demo terminal — no server, no real device access.</div>
+        </div>
+      </aside>
+
+      <div class="terminal-wrap" id="terminalWrap">
+        <div id="screens"></div>
+      </div>
+    </main>
+
+    <!-- Termux-style extra keys row -->
+    <div class="extra-keys" id="extraKeys">
+      <button data-key="esc">ESC</button>
+      <button data-key="tab">TAB</button>
+      <button data-key="ctrl">CTRL</button>
+      <button data-key="alt">ALT</button>
+      <button data-key="left">←</button>
+      <button data-key="down">↓</button>
+      <button data-key="up">↑</button>
+      <button data-key="right">→</button>
+      <button data-key="/">/</button>
+      <button data-key="~">~</button>
+      <button data-key="|">|</button>
+      <button data-key="-">-</button>
+    </div>
+  </div>
+
+  <!-- Tiny nano-like editor overlay -->
+  <div class="modal" id="editorModal" hidden>
+    <div class="editor">
+      <div class="editor-bar"><span id="editorTitle">nano</span><span class="editor-keys">^O Save  ^X Exit</span></div>
+      <textarea id="editorText" spellcheck="false"></textarea>
+      <div class="editor-actions">
+        <button id="editorCancel">Cancel (^X)</button>
+        <button class="primary" id="editorSave">Save (^O)</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
